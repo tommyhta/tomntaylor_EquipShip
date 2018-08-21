@@ -1,17 +1,22 @@
 package com.codingdojo.tomntaylor.equipship.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -28,15 +33,128 @@ public class User {
 	private String password;
 	@Transient
 	private String passwordConfirmation;
+	@Size(min=2, message="First name must be at least two characters")
 	private String firstName;
+	@Size(min=2, message="Last name must be at least two characters")
 	private String lastName;
+	@Size(min=2, message="City must be at least two characters")
 	private String city;
 	private String state;
+	private String tagline;
+	private int user_level;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
+	//relationships
+	//category
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+		name = "user_categories",
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="category_id")
+		)
+	private List<Category> userCategories;
+	//message
+	@OneToMany(mappedBy="sender", fetch=FetchType.LAZY)
+	private List<Message> sentMessages;
+	@OneToMany(mappedBy="recipient", fetch=FetchType.LAZY)
+	private List<Message> receivedMessages;
+	//review
+	@OneToMany(mappedBy="reviewer", fetch=FetchType.LAZY)
+	private List<Review> sentReviews;
+	@OneToMany(mappedBy="reviewee", fetch=FetchType.LAZY)
+	private List<Review> receivedReviews;
+	//meeting
+	@OneToMany(mappedBy="requestor", fetch=FetchType.LAZY)
+	private List<Meeting> sentMeetings;
+	@OneToMany(mappedBy="requestee", fetch=FetchType.LAZY)
+	private List<Meeting> receivedMeetings;
+	//mentors
+	@ManyToMany
+	@JoinTable(
+		name="user_mentors",
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name = "mentor_id")
+		)
+	private List<User> mentors;
+	@ManyToMany(mappedBy = "mentors")
+	private List<User> mentees; 
+	public User() {
+		super();
+	}
 
-	
+	public List<Review> getSentReviews() {
+		return sentReviews;
+	}
+
+	public void setSentReviews(List<Review> sentReviews) {
+		this.sentReviews = sentReviews;
+	}
+
+	public List<Review> getReceivedReviews() {
+		return receivedReviews;
+	}
+
+	public void setReceivedReviews(List<Review> receivedReviews) {
+		this.receivedReviews = receivedReviews;
+	}
+
+	public List<Meeting> getSentMeetings() {
+		return sentMeetings;
+	}
+
+	public void setSentMeetings(List<Meeting> sentMeetings) {
+		this.sentMeetings = sentMeetings;
+	}
+
+	public List<Meeting> getReceivedMeetings() {
+		return receivedMeetings;
+	}
+
+	public void setReceivedMeetings(List<Meeting> receivedMeetings) {
+		this.receivedMeetings = receivedMeetings;
+	}
+
+	public List<Message> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<Message> sentMessages) {
+		this.sentMessages = sentMessages;
+	}
+
+	public List<Message> getReceivedMessages() {
+		return receivedMessages;
+	}
+
+	public void setReceivedMessages(List<Message> receivedMessages) {
+		this.receivedMessages = receivedMessages;
+	}
+
+	public List<Category> getUserCategories() {
+		return userCategories;
+	}
+
+	public void setUserCategories(List<Category> userCategories) {
+		this.userCategories = userCategories;
+	}
+
+	public int getUser_level() {
+		return user_level;
+	}
+
+	public void setUser_level(int user_level) {
+		this.user_level = user_level;
+	}
+
+	public String getTagline() {
+		return tagline;
+	}
+
+	public void setTagline(String tagline) {
+		this.tagline = tagline;
+	}
+
 	public Long getId() {
 		return id;
 	}
