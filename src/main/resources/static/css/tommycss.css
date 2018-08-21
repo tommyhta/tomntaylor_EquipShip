@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+*{
+    background-color:black;
+   color:#FFAF23; 
+}
+.navbar *{
+    background-color:#343a40;
+}
+
+.switchBtn{
+    margin-top: 100px;
+    text-align: center!important;
+}
+div.profile{
+    text-align: center;
+}
+img.profileImg{
+    width: 50%;
+    margin: 10px;  
+    border-radius: 50%;
+  
+    border: 2px solid #FFAF23;
+}
+p.name{
+    margin: 0;
+}
+.center{
+    text-align: center;
+}
+table{
+    width: 100%;
+}
+.requestSession{
+    border-bottom: 1px solid #FFAF23;
+}
+div.session{
+    margin: 10px;
+}
+.vAllign{
+    vertical-align: top;
+}
+div.chatbox{
+    width: 100%;
+    height: 150px;
+    border: 1px solid #FFAF23;
+    overflow: scroll;
+    margin-top: 10px;
+    color: #00A9E5;
+    background: #343a40;
+}
+.msgInput{
+    width: 75%;
+    margin:0;
+}
+.btnInput{
+    margin:0;
+    text-align: center;
+}
+.stdInput{
+    background-color: #343a40;
+    color:#00A9E5;
+} 
+#mentor{
+   margin: 20px;
+}
+.reqForm{
+    padding: 20px;
+}
+
+.bluFont{
+    color: #00A9E5;
+    font-weight: 700;
+}
+.dBluFont{
+    color:#092352;
+}
+.mFont *{
+    color:#092352;
+}
+.reviewText{
+    width: 80%;
+    height: 100;
+    resize: none;
+    border-radius: 5px;
+}
+.reviewList{
+    width: 80%;
+    margin: auto;
+    height: 200px;
+    border: 1px solid #FFAF23;
+    overflow: scroll;
+    margin-top: 10px;
+    color: #00A9E5;
+    background: #343a40;
+}
