@@ -5,85 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<meta charset="UTF-8">
-<title>Equipship | My Mentees</title>
-    <style>
-        *{
-            /* border: 1px solid black; */
-           color:#FFAF23; 
-        }
-        .main{
-            background-color: black;
-            height: 100vh;
-            padding: 20px;
-        }
-        .switchBtn{
-            margin-top: 100px;
-            text-align: center!important;
-        }
-        div.profile{
-            text-align: center;
-        }
-        img.profileImg{
-            width: 50%;
-            margin: 10px;  
-            border-radius: 50%;
-          
-            border: 2px solid #FFAF23;
-        }
-        p.name{
-            margin: 0;
-        }
-        .center{
-            text-align: center;
-        }
-        table{
-            width: 100%;
-        }
-        .requestSession{
-            border-bottom: 1px solid #FFAF23;
-        }
-        div.session{
-            margin: 10px;
-        }
-        .vAllign{
-            vertical-align: top;
-        }
-        div.chatbox{
-            width: 100%;
-            height: 150px;
-            border: 1px solid #FFAF23;
-            overflow: auto;
-            margin-top: 10px;
-            color: #00A9E5;
-            background: #343a40;
-        }
-        .msgInput{
-            width: 85%;
-            margin:0;
-        }
-        .btnInput{
-            width:13%;
-            margin:0;
-            text-align: center;
-        }
-        .stdInput{
-            background-color: #343a40;
-            color:#00A9E5;
-        } 
-        #mentor{
-           margin: 20px;
-        }
-        .reqForm{
-            padding: 20px;
-        }
-        .bluFont{
-            color: #00A9E5;
-            font-weight: 700;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <title>EquipShip | My Mentees </title>
+    <link rel="stylesheet" href="css/tommycss.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
