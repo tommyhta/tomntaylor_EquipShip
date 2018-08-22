@@ -40,6 +40,7 @@ public class Users {
 		if(result.hasErrors()) {
 			return "loginreg.jsp";
 		}
+		user.setUser_level(1);
 		User u = userService.registerUser(user);
 		session.setAttribute("userId", u.getId());
 		return "redirect:/";
@@ -66,7 +67,7 @@ public class Users {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/login";
+		return "redirect:/loginreg";
 	}
 }
 
