@@ -40,7 +40,7 @@
       </div>
       <div>
       	<c:choose>
-      		<c:when test="${sessionScope.user == null }">
+      		<c:when test="${sessionScope.userId == null }">
       			<a href="/loginreg"><button>Login</button></a> 
       		</c:when>
       		<c:otherwise>
