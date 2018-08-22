@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.tomntaylor.equipship.models.User;
 import com.codingdojo.tomntaylor.equipship.services.UserService;
@@ -37,7 +38,7 @@ public class Users {
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		userValidator.validate(user, result);
 		if(result.hasErrors()) {
-			return "registrationPage.jsp";
+			return "loginreg.jsp";
 		}
 		User u = userService.registerUser(user);
 		session.setAttribute("userId", u.getId());
@@ -45,15 +46,15 @@ public class Users {
 	}
 	
 	@PostMapping("/login")
-	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password,RedirectAttributes redirectAttribute, Model model, HttpSession session) {
 		boolean isAuthenticated = userService.authenticateUser(email, password);
 		if(isAuthenticated) {
 			User u = userService.findByEmail(email);
 			session.setAttribute("userId", u.getId());
 			return "redirect:/";
 		} else {
-			model.addAttribute("error", "Invalid Credentials.  Please try again.");
-			return "loginPage.jsp";
+			redirectAttribute.addFlashAttribute("error", "Invalid Credential");
+			return "redirect:/loginreg";
 		}
 	}
 	
