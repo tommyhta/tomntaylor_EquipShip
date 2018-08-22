@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.main {
+	background-color: black;
+	padding: 3%;
+}
+.red {
+	color: red;
+}
+.light-blue {
+	color: #00A9E5;
+}
