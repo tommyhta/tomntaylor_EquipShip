@@ -34,4 +34,9 @@ public class HomeController {
 	public String myMentees() {
 		return "mymentees.jsp";
 	}
+	
+	@RequestMapping("/admin")
+	public String showAdminPortal() {
+		return "adminportal.jsp";
+	}
 }
