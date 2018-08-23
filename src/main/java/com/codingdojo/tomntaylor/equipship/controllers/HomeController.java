@@ -191,6 +191,7 @@ public class HomeController {
 		reView.setReviewer(thisUser);
 		reView.setReviewee(user);
 		user.getReceivedReviews().add(reView);
+		user.setAvgRating();
 		userService.updateUser(user);
 		reviewService.updateReview(reView);
 		return "redirect:/mymentors";

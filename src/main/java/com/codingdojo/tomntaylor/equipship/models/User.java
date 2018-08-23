@@ -115,24 +115,13 @@ public class User {
 		return avgRating;
 	}
 
-	public void setAvgRating(float avgRating) {
-		this.avgRating = avgRating;
-	}
-
-	public List<User> getMentors() {
-		return mentors;
-	}
-
-	public void setMentors(List<User> mentors) {
-		this.mentors = mentors;
-	}
-
-	public List<User> getMentees() {
-		return mentees;
-	}
-
-	public void setMentees(List<User> mentees) {
-		this.mentees = mentees;
+	public void setAvgRating() {
+		float rating = 0;
+		List<Review> allreviews = this.receivedReviews;
+		for(int i = 0; i < allreviews.size(); i++) {
+			rating += (float) allreviews.get(i).getRating();
+		}
+		this.avgRating = rating / allreviews.size();
 	}
 
 	public List<Review> getSentReviews() {
