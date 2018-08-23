@@ -65,7 +65,16 @@
 				<tbody>
 					<c:forEach items="${users}" var="user">
 					<tr>
-						<td class="light-blue"><c:out value="${user.user_level}"/></td>
+						<td class="light-blue">
+							<c:choose>
+								<c:when test="${user.user_level == 9 }">
+									Admin User
+								</c:when>
+								<c:otherwise>
+									Standard User
+								</c:otherwise>
+							</c:choose>	
+						</td>
 						<td class="light-blue"><c:out value="${user.firstName}"/></td>
 						<td class="light-blue"><c:out value="${user.lastName}"/></td>
 						<td class="light-blue"><c:out value="${user.email}"/></td>

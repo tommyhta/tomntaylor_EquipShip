@@ -154,7 +154,6 @@ public class HomeController {
 		List<User> mentors = user.getMentors();
 		model.addAttribute("mentors", mentors);		
 		List<Message> msgRec = messageService.getByRec(user);
-		System.out.println(msgRec);
 		model.addAttribute("msgRec", msgRec);
 		
 		
