@@ -9,7 +9,7 @@
 }
 .background-light-blue {
 	background-color: #00A9E5;
-	width: 75%;
+	width: 110%;
 	height: 150%;
 }
 .dark-blue {
@@ -46,4 +46,12 @@
 }
 .inline-b {
 	display: inline-block;
+	vertical-align: top;
+}
+.category-margins {
+	margin: 1%;
+}
+.block-categories {
+	display: block;
+	padding: 3%;
 }

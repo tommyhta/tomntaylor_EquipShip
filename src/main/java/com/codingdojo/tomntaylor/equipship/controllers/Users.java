@@ -1,5 +1,7 @@
 package com.codingdojo.tomntaylor.equipship.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.tomntaylor.equipship.models.Category;
 import com.codingdojo.tomntaylor.equipship.models.User;
 import com.codingdojo.tomntaylor.equipship.services.UserService;
 import com.codingdojo.tomntaylor.equipship.validators.UserValidator;
@@ -61,11 +64,6 @@ public class Users {
 			redirectAttribute.addFlashAttribute("error", "Invalid Credential");
 			return "redirect:/loginreg";
 		}
-	}
-	
-	@RequestMapping("/")
-	public String home() {
-		return "home.jsp";
 	}
 	
 	@RequestMapping("/logout")
