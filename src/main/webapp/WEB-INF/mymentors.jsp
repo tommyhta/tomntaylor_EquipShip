@@ -45,10 +45,13 @@
       			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
-      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
+      			<span>Hello, <a class="orange" href="/myprofile"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-xm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
+      	<c:if test="${sessionScope.userLv == 9}">
+      		<a href="/admin"><button class="btn btn-xm btn-secondary">Admin</button></a>
+      	</c:if>
       </div>
     </nav>
     <div class="main">

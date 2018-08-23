@@ -2,7 +2,8 @@
 
 *{
    background-color:black;
-   color:#FFAF23; 
+   color:#FFAF23;
+   border:  
 }
 a{
 	text-decoration: none;
@@ -136,4 +137,19 @@ div.chatbox{
 	font-size: 13px;
 	border-radius: 5px;
 }
+.tagEdit{
+	width: 100%;
+}
+
+.descEdit{
+	width: 100%;
+	margin: 40px 0 0 0;
+	height: 150px;
+	resize: none;
+}
+
+
+
+
+
 
