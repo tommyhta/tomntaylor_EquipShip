@@ -8,7 +8,9 @@ $(document).ready(function(){
 			$("#boat").css({
 				'transform' : 'rotate('+x+'deg)'
 			});
-			console.log(wScroll/2);
+			
 	
-	});
+		
+	})
 });
+

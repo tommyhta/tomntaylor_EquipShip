@@ -12,4 +12,5 @@ import com.codingdojo.tomntaylor.equipship.models.User;
 public interface CategoryRepository extends CrudRepository<Category, Long>{
 	List<Category> findAll();
 	List<Category> findAllByUsersInCategory(User user);
+	List<Category> findByNameContaining(String search);
 }
