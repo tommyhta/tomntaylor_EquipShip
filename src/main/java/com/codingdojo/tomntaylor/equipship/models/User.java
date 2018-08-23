@@ -138,6 +138,7 @@ public class User {
 	public void setUserCategories(List<Category> userCategories) {
 		this.userCategories = userCategories;
 	}
+	
 
 	public int getUser_level() {
 		return user_level;
@@ -233,6 +234,23 @@ public class User {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+
+	public List<User> getMentors() {
+		return mentors;
+	}
+
+	public void setMentors(List<User> mentors) {
+		this.mentors = mentors;
+	}
+
+	public List<User> getMentees() {
+		return mentees;
+	}
+
+	public void setMentees(List<User> mentees) {
+		this.mentees = mentees;
 	}
 
 	@PrePersist

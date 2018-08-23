@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
     <title>EquipShip | My Mentors </title>
+
     <link rel="stylesheet" href="css/tommycss.css">
 </head>
 <body>
@@ -40,11 +41,12 @@
       </div>
       <div>
       	<c:choose>
-      		<c:when test="${sessionScope.userId == null }">
-      			<a href="/loginreg"><button>Login</button></a> 
+      		<c:when test="${sessionScope.userId == null}">
+      			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<a href="/logout"><button>Logout</button></a>
+      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
       </div>
@@ -54,41 +56,58 @@
             <h2 class="center bluFont">Mentors</h2>
 
             <!-- ---------------------------------------------- -->
-
+	<c:forEach items="${mentors}" var="mentor">
+	
                <div id="mentor"class="row">
                 <div class="col-lg-1"></div>
                 <div class="profile col-lg-2 vAllign">
                     <img class="profileImg" src="images/profilepic.png" alt="Profile Image">
-                    <p class="name">Full Name</p>
-                    <p class="name">Mentor-created tagline</p>
-                    <button type="button" class="btn-primary mt-2" data-toggle="modal" data-target="#review">
+                    <p class="name"><c:out value="${mentor.firstName }"/> <c:out value="${mentor.lastName }"/></p>
+                    
+                    <p class="name"><c:out value="${mentor.tagline}"/></p>
+                    <button type="button" class="btn-primary mt-2" data-toggle="modal" data-target="#review${mentor.id}">
                         Review
                     </button>
                 </div>
                 <div class="session col-lg-3 vAllign">
                 <h6 class="center requestSession">Request a session</h6>
-                    <form class="reqForm" action="#" method="post">
+                
+                
+                
+                    <form:form class="reqForm" action="/${mentor.id}/requestSession" method="post" modelAttribute="meeting">
                         <table>
                             <tr>
-                                <td><label for="time">Time:</label></td>
-                                <td><input class="stdInput" type="time" name="time"></td>
+                                <td><form:label path="time">Time:</form:label></td>
+                                <td><form:input class="stdInput" type="time" path="time"/></td>
                             </tr>
                             <tr>
-                                <td><label for="date">Date:</label></td>
-                                <td><input class="stdInput" type="date" name="date"></td>
+                                <td><form:label path="date">Date:</form:label></td>
+                                <td><form:input class="stdInput" type="date" path="date"/></td>
                             </tr>
                             <tr>
-                                <td><label for="location">Location:</label></td>
-                                <td><input class="stdInput" type="text" name="location"></td>
+                                <td><form:label path="location">Location:</form:label></td>
+                                <td><form:input class="stdInput" type="text" path="location"/></td>
                             </tr>
                         </table>
                         <div class="center mt-2"><button class="btn-primary">Request</button></div>
-                    </form>
+                    </form:form>
+                    
+                    
+                    
+                    
                 </div>
                 <div class="message col-lg-5 vAllign">
-                    <div class="chatbox"></div>
+		                    		<div class="chatbox">
+                
+                    	<c:forEach items="${msgRec}" var="msg">   	
+		                    	<c:if test="${msg.sender.id == mentor.id }">
+		                    			<p class="bluFont grayBack name"><c:out value="${msg.content}"/></p>
+		                    	</c:if>
+                    	</c:forEach>
+   
+		                    		</div>
                     <div class="form">
-                        <form action="#" action="post">
+                        <form action="/${mentor.id}/message" method="post">
                             <input class="msgInput stdInput mt-2" type="text" name="message" placeholder="Type your message here">
                             <button class="btnInput btn-primary">Send</button>
                         </form>
@@ -97,17 +116,17 @@
             </div>
 
 <!-- ------------------------------------------------------------------------------------------------------------ -->
-            <div class="mFont modal fade" id="review">
+            <div class="mFont modal fade" id="review${mentor.id}">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4>Review Full Name</h4>
+                            <h4>Review <c:out value="${mentor.firstName }"/> <c:out value="${mentor.lastName }"/></h4>
                             <button class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button> 
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="post" class="center">
+                            <form action="/${mentor.id}/review" method="post" class="center">
                                 <label for="rating">Rating:</label>
                                 <select name="rating">
                                     <option value="1">1</option>
@@ -126,7 +145,7 @@
 
             </div>
 
-
+</c:forEach>
 
 
 

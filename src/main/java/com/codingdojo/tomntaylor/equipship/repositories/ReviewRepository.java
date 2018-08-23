@@ -13,5 +13,4 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 	List<Review> findAll();
 	List<Review> findAllByReviewer(User reviewer);
 	List<Review> findAllByReviewee(User reviewee);
-
 }

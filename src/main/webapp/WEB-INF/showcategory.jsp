@@ -9,31 +9,43 @@
 <meta charset="UTF-8">
 <title>Equipship | Category Name</title>
 <link rel="stylesheet" type="text/css" href="css/showcategory.css">
+
 </head>
 <body>
 	<div class="container-fluid p-0">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="/">
-			<img src="/images/equipship-boat.png" width="50" height="50" class="d-inline-block align-center" alt="boat">
-	    	Equipship
-	    	</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item">
-		        <a class="nav-link" href="/myprofile">My Profile</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="/mymentors">Mentors</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="/mymentees">Mentees</a>
-		      </li>
-		    </ul>
-		  </div>
-		</nav>
+		 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+        <img src="/images/equipship-boat.png" width="50" height="50" class="d-inline-block align-center" alt="boat">
+        <span class="dBluFont boldFont">equip</span><span class="bluFont">ship</span>
+        </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/myprofile">My Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mymentors">Mentors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mymentees">Mentees</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+      	<c:choose>
+      		<c:when test="${sessionScope.userId == null}">
+      			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
+      		</c:when>
+      		<c:otherwise>
+      			<span class="orange">Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
+      		</c:otherwise>  	
+      	</c:choose>
+      </div>
+    </nav>
 		<div class="main">
 			<h1 class="light-blue pt-5">Software Development Mentors in San Jose, CA</h1>
 			<h4 class="orange pb-3">Showing 1-3 of 11 mentors</h4>
