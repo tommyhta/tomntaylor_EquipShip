@@ -44,10 +44,13 @@
       			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
-      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
+      			<span>Hello, <a class="orange" href="/myprofile"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-xm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
+      	<c:if test="${sessionScope.userLv == 9}">
+      		<a href="/admin"><button class="btn btn-xm btn-secondary">Admin</button></a>
+      	</c:if>
       </div>
     </nav>
     <div class="main">
@@ -60,8 +63,8 @@
                     <img class="profileImg" src="images/profilepic.png" alt="Profile Image">
                     <p class="name"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></p>
                     <form action="/myprofile/edittagline" method="post">
-                    		<input type="text" value="${user.tagline}" name="tagline"/>
-                    		<button type="submit" class="btn-primary">Update</button>
+                    		<input class="tagEdit" type="text" value="${user.tagline}" name="tagline"/>
+                    		<button type="submit" class="btn-primary btn-xm mt-2">Update</button>
                     </form>
                     <c:choose>
                     	<c:when test="${user.avgRating < 0.5}">
@@ -101,8 +104,8 @@
                 </div>
                 <div class="message col-lg-4 vAllign">
                     		<form action="/myprofile/editdescription" method="post">
-                    			<textarea class="chatbox" name="description"><c:out value="${user.description}"/></textarea>
-                    			<button type="submit" class="btn-primary">Update</button>
+                    			<textarea class="descEdit" name="description"><c:out value="${user.description}"/></textarea><br>
+                    			<button type="submit" class="btn-primary btn-xm">Update</button>
                     		</form>
                 </div>
                 <div class="session col-lg-4 vAllign">
@@ -113,7 +116,7 @@
                             <td>
                             <form action="/myprofile/editbillingrate" method="post">
                             		<input type="number" step="0.01" name="billingrate" value="${user.billingRate}"/>
-                            		<button type="submit" class="btn-primary">Update</button>
+                            		<button type="submit" class="btn-primary btn-xm">Update</button>
                             </form>
                             </td>
                         </tr>
@@ -124,7 +127,9 @@
                     </table>
                     <br>
                     <h6 class="center requestSession">My Skill Categories:</h6>
-                    <div class="form-inline">
+                    
+                    
+                   
                     <form action="/myprofile/addcategory" method="post" class="mt-3">
                         <label for="category">Skill Category:</label>
                         <select name="category" class="stdInput">
@@ -132,9 +137,10 @@
                             <option value="${category.id}"><c:out value="${category.name}"/></option>
                             </c:forEach>
                         </select>
-                        <button class="btn-primary">Add</button>
+                        <button class="btn-primary btn-xm">Add</button>
                     </form>
-                    </div>
+
+                    
                     <ul>
                     	<c:forEach items="${user.getUserCategories()}" var="userCategory">
                     		<li>
@@ -151,7 +157,7 @@
                     <h3>Reviews</h3>
                     <div class="reviewList">
                     <c:forEach items="${user.receivedReviews}" var="review">
-                    <p>"<c:out value="${review.reviewContent}"/>" ~<c:out value="${review.reviewer.firstName}"/> (<c:out value="${review.reviewer.city}"/>, <c:out value="${review.reviewer.state}"/>)</p>
+                    <p class="bluFont grayBack">"<c:out value="${review.reviewContent}"/>" ~<c:out value="${review.reviewer.firstName}"/> (<c:out value="${review.reviewer.city}"/>, <c:out value="${review.reviewer.state}"/>)</p>
                     </c:forEach>
                     </div>
                 </div>

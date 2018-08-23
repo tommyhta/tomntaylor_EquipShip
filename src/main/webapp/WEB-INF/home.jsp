@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 <meta charset="UTF-8">
 <title>Equipship | Home</title>
 <link rel="stylesheet" type="text/css" href="css/tommycss.css">
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<div class="container-fluid p-0 bottom">
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">
         <img src="/images/equipship-boat.png" width="50" height="50" class="d-inline-block align-center" alt="boat">
         <span class="dBluFont boldFont">equip</span><span class="bluFont">ship</span>
@@ -45,16 +46,19 @@
       			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
-      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
+      			<span>Hello, <a class="orange" href="/myprofile"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-xm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
+      	<c:if test="${sessionScope.userLv == 9}">
+      		<a href="/admin"><button class="btn btn-xm btn-secondary">Admin</button></a>
+      	</c:if>
       </div>
     </nav>
 		<div class="main">
 			<h1 class="headline light-blue">The convenient & affordable way to get equipped with empowering skills by getting mentorship from people in your community.</h1>
 			<h4 class="tagline orange">Choose from over 10,000 verified Mentors to equip you with knowledge & skills without breaking the bank!</h4>
-			<img class="boat" src="/images/equipship-boat.png" alt="boat">
+			<img id="boat" class="boat" src="/images/equipship-boat.png" alt="boat">
 			<div class="centered padding-sides">
 				<form>
 			    	<input class="form-control mr-sm-2" type="search" placeholder="Type your desired skillset..." aria-label="Search">

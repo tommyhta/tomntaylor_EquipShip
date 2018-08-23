@@ -59,12 +59,16 @@ public class HomeController {
 	
 	@RequestMapping("/myprofile")
 	public String myProfile(Model model, HttpSession session) {
+		if(session.getAttribute("userId")== null) {
+			return "redirect:/loginreg";
+		}else {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		model.addAttribute("user", user);
 		List<Category> categories = categoryService.allCategories();
 		model.addAttribute("categories", categories);
 		return "myprofile.jsp";
+		}
 	}
 	
 
@@ -231,16 +235,39 @@ public class HomeController {
 	}
 
 	@RequestMapping("/admin")
-	public String showAdminPortal(Model model) {
-		List<User> users = userService.allUsers();
-		model.addAttribute("users", users);
-		return "adminportal.jsp";
+	public String showAdminPortal(Model model, HttpSession session) {
+		if(session.getAttribute("userId")== null) {
+			return "redirect:/loginreg";
+		}else {
+			if((int) session.getAttribute("userLv") < 9) {
+				session.invalidate();
+				return "redirect:/loginreg";
+			}else {
+			List<User> users = userService.allUsers();
+			model.addAttribute("users", users);
+			return "adminportal.jsp";
+			}
+		}
 	}
 	
-	@RequestMapping("/admin/deleteuser/{id}")
+	@RequestMapping(value="/admin/deleteuser/{id}", method=RequestMethod.POST)
 	public String deleteUser(@PathVariable("id") Long id) {
 		userService.deleteUser(id);
 		return "redirect:/admin";
+	}
+	
+	@RequestMapping(value="/admin/changeUserLevel/{id}", method=RequestMethod.POST)
+	public String changeUserLevel(@PathVariable("id") Long id) {
+		User user = userService.findUserById(id);
+		if(user.getUser_level() == 1) {
+			user.setUser_level(9);
+			userService.updateUser(user);
+			return "redirect:/admin";
+		}else {
+			user.setUser_level(1);
+			userService.updateUser(user);
+			return "redirect:/admin";
+		}
 	}
 
 	@RequestMapping(value="accept/{id}", method=RequestMethod.POST)

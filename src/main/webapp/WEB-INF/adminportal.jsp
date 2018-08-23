@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container-fluid p-0">
-	 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">
         <img src="/images/equipship-boat.png" width="50" height="50" class="d-inline-block align-center" alt="boat">
         <span class="dBluFont boldFont">equip</span><span class="bluFont">ship</span>
@@ -40,10 +40,13 @@
       			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
-      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
+      			<span>Hello, <a class="orange" href="/myprofile"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-xm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
+      	<c:if test="${sessionScope.userLv == 9}">
+      		<a href="/admin"><button class="btn btn-xm btn-secondary">Admin</button></a>
+      	</c:if>
       </div>
     </nav>
 		<div class="main">
@@ -68,7 +71,14 @@
 						<td class="light-blue"><c:out value="${user.email}"/></td>
 						<td class="light-blue"><c:out value="${user.city}"/></td>
 						<td class="light-blue"><c:out value="${user.state}"/></td>
-						<td><a  class="red" href="/admin/deleteuser/${user.id}">Delete</a></td>
+						<td>
+							<form class="formI" action="/admin/deleteuser/${user.id}" method="post">
+								<button class="btn-xm btn-danger">Delete</button>
+							</form>
+							<form class="formI" action="/admin/changeUserLevel/${user.id }" method="post">
+								<button class="btn-xm btn-success">Change User Level</button>
+							</form>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
