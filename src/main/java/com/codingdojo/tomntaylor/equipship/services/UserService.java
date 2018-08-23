@@ -39,9 +39,6 @@ public class UserService {
 		}
 	}
 	
-	public void updateUser(User user) {
-		userRepository.save(user);
-	}
 	public boolean authenticateUser(String email, String password) {
 		User user = userRepository.findByEmail(email);
 		if(user == null) {
