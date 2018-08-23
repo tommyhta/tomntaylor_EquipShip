@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.tomntaylor.equipship.models.Message;
+import com.codingdojo.tomntaylor.equipship.models.User;
 import com.codingdojo.tomntaylor.equipship.repositories.MessageRepository;
 
 @Service
@@ -15,10 +16,14 @@ public class MessageService {
 		this.messageRepository = messageRepository;
 	}
 	
-	public void createMessage(Message message) {
-		messageRepository.save(message);
+	public Message createMessage(Message message) {
+		return messageRepository.save(message);
 	}
 	
+	public List<Message> getByRec(User user){
+		return messageRepository.findAllByRecipient(user);
+	}
+	 
 	public Message findById(Long id) {
 		Message m = messageRepository.findOne(id);
 		return m;

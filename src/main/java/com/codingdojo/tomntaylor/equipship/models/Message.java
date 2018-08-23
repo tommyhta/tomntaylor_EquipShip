@@ -35,6 +35,13 @@ public class Message {
 	public Message() {
 		super();
 	}
+	
+
+	public Message(String content) {
+		super();
+		this.content = content;
+	}
+
 
 	public Date getCreatedAt() {
 		return createdAt;

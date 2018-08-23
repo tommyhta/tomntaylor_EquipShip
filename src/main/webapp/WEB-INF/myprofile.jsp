@@ -40,18 +40,18 @@
       </div>
       <div>
       	<c:choose>
-      		<c:when test="${sessionScope.userId == null }">
-      			<a href="/loginreg"><button>Login</button></a> 
+      		<c:when test="${sessionScope.userId == null}">
+      			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<a href="/logout"><button>Logout</button></a>
+      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
       </div>
     </nav>
     <div class="main">
         <div class="body">
-            <h2 class="center bluFont">Mentees</h2>
         <div class="main">
             <h1 class="center bluFont">Hello Full Name</h1>
             <div class="top row">

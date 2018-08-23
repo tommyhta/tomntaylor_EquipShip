@@ -43,6 +43,8 @@ public class Users {
 		user.setUser_level(1);
 		User u = userService.registerUser(user);
 		session.setAttribute("userId", u.getId());
+		session.setAttribute("userLv", u.getUser_level());
+		session.setAttribute("firstName", u.getFirstName());
 		return "redirect:/";
 	}
 	
@@ -52,6 +54,8 @@ public class Users {
 		if(isAuthenticated) {
 			User u = userService.findByEmail(email);
 			session.setAttribute("userId", u.getId());
+			session.setAttribute("userLv", u.getUser_level());
+			session.setAttribute("firstName", u.getFirstName());
 			return "redirect:/";
 		} else {
 			redirectAttribute.addFlashAttribute("error", "Invalid Credential");

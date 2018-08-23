@@ -4,6 +4,10 @@
 	margin: 0;
 	text-align: center;
 }
+a:hover{
+	color: yellow;
+	text-decoration:none;
+}
 .main {
 	background-color: black;
 	padding-bottom: 10%;
