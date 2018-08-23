@@ -1,10 +1,12 @@
 package com.codingdojo.tomntaylor.equipship.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import com.codingdojo.tomntaylor.equipship.models.Category;
 import com.codingdojo.tomntaylor.equipship.models.User;
 import com.codingdojo.tomntaylor.equipship.repositories.UserRepository;
 
@@ -49,4 +51,30 @@ public class UserService {
 			}
 		}
 	}
+	
+	public void deleteUser(Long id) {
+		userRepository.delete(id);
+	}
+	
+	public List<User> allUsers() {
+		return (List<User>) userRepository.findAll();
+	}
+
+	public void updateUser(User user) {
+		userRepository.save(user);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

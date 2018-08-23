@@ -13,7 +13,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-        <title>EquipShip | Full Name </title>
+        <title>EquipShip | <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></title>
         <link rel="stylesheet" href="css/tommycss.css">
     </head>
 <body>
@@ -51,55 +51,111 @@
     </nav>
     <div class="main">
         <div class="body">
-            <h2 class="center bluFont">Mentees</h2>
         <div class="main">
-            <h1 class="center bluFont">Hello Full Name</h1>
+            <h1 class="center bluFont">Hello, <c:out value="${user.firstName}"/>!</h1>
             <div class="top row">
                 <div class="col-lg-1"></div>
                 <div class="profile col-lg-2 vAllign">
                     <img class="profileImg" src="images/profilepic.png" alt="Profile Image">
-                    <p class="name">Full Name</p>
-                    <p class="name">Tag Line</p>
-                    <p class="name">RATING</p>
-                </div>
-                <div class="message col-lg-5 vAllign">
-
-                    <div class="chatbox"></div>
-
-
-                    <form action="#" method="post" class="mt-3">
-                        <label for="category">Skill Category:</label>
-                        <select name="category" class="stdInput">
-                            <option value="developer">Developer</option>
-                            <option value="healthcare">HealthCare</option>
-                            <option value="information technology">Information Technology</option>
-                            <option value="music">Music</option>
-                            <option value="rock climbing">Rock Climbing</option>
-                        </select>
-                        <button class="btn-primary">Add</button>
+                    <p class="name"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></p>
+                    <form action="/myprofile/edittagline" method="post">
+                    		<input type="text" value="${user.tagline}" name="tagline"/>
+                    		<button type="submit" class="btn-primary">Update</button>
                     </form>
+                    <c:choose>
+                    	<c:when test="${user.avgRating < 0.5}">
+                    		<img src="/images/0.png" alt="0Stars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 1.0}">
+                    		<img src="/images/0half.png" alt="0halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 1.5}">
+                    		<img src="/images/1.png" alt="1Stars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 2.0}">
+                    		<img src="/images/1half.png" alt="1halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 2.5}">
+                    		<img src="/images/2.png" alt="2Stars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 3.0}">
+                    		<img src="/images/2half.png" alt="2halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 3.5}">
+                    		<img src="/images/3.png" alt="3halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 4.0}">
+                    		<img src="/images/3half.png" alt="3halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 4.5}">
+                    		<img src="/images/4.png" alt="4Stars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating < 5.0}">
+                    		<img src="/images/4half.png" alt="4halfStars">
+                    	</c:when>
+                    	<c:when test="${user.avgRating >= 5.0}">
+                    		<img src="/images/5.png" alt="5Stars">
+                    	</c:when>
+                    </c:choose>
                 </div>
-                <div class="session col-lg-3 vAllign">
-                    <h6 class="center requestSession">Prices</h6>
+                <div class="message col-lg-4 vAllign">
+                    		<form action="/myprofile/editdescription" method="post">
+                    			<textarea class="chatbox" name="description"><c:out value="${user.description}"/></textarea>
+                    			<button type="submit" class="btn-primary">Update</button>
+                    		</form>
+                </div>
+                <div class="session col-lg-4 vAllign">
+                    <h6 class="center requestSession">Pricing Info:</h6>
                     <table>
                         <tr>
                             <td>My Rate:</td>
-                            <td>$215.00/hr</td>
+                            <td>
+                            <form action="/myprofile/editbillingrate" method="post">
+                            		<input type="number" step="0.01" name="billingrate" value="${user.billingRate}"/>
+                            		<button type="submit" class="btn-primary">Update</button>
+                            </form>
+                            </td>
                         </tr>
                         <tr>
-                            <td>Billing:</td>
-                            <td>$32,000.00</td>
+                            <td>Total Earnings:</td>
+                            <td>$<c:out value="${user.totalEarnings}"/></td>
                         </tr>
                     </table>
+                    <br>
+                    <h6 class="center requestSession">My Skill Categories:</h6>
+                    <div class="form-inline">
+                    <form action="/myprofile/addcategory" method="post" class="mt-3">
+                        <label for="category">Skill Category:</label>
+                        <select name="category" class="stdInput">
+                        	<c:forEach items="${categories}" var="category">
+                            <option value="${category.id}"><c:out value="${category.name}"/></option>
+                            </c:forEach>
+                        </select>
+                        <button class="btn-primary">Add</button>
+                    </form>
+                    </div>
+                    <ul>
+                    	<c:forEach items="${user.getUserCategories()}" var="userCategory">
+                    		<li>
+	                    		<c:out value="${userCategory.name}"/>   
+	                    		<a href="/myprofile/removecategory/${userCategory.id}">Remove</a>
+                    		</li>
+                    	</c:forEach>
+                    </ul>
                 </div>
             </div>
             <div class="bottom row mt-5">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
                     <h3>Reviews</h3>
-                    <div class="reviewList"></div>
+                    <div class="reviewList">
+                    <c:forEach items="${user.receivedReviews}" var="review">
+                    <p>"<c:out value="${review.reviewContent}"/>" ~<c:out value="${review.reviewer.firstName}"/> (<c:out value="${review.reviewer.city}"/>, <c:out value="${review.reviewer.state}"/>)</p>
+                    </c:forEach>
+                    </div>
                 </div>
-
+				</div>
+				</div>
             </div>
         </div>
 </body>

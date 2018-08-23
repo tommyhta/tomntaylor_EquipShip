@@ -59,15 +59,17 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${users}" var="user">
 					<tr>
-						<td class="light-blue">Admin</td>
-						<td class="light-blue">Taylor</td>
-						<td class="light-blue">Brudos</td>
-						<td class="light-blue">taylor@brudos.com</td>
-						<td class="light-blue">Sunnyvale</td>
-						<td class="light-blue">CA</td>
-						<td><a  class="red" href="#">Delete</a></td>
+						<td class="light-blue"><c:out value="${user.user_level}"/></td>
+						<td class="light-blue"><c:out value="${user.firstName}"/></td>
+						<td class="light-blue"><c:out value="${user.lastName}"/></td>
+						<td class="light-blue"><c:out value="${user.email}"/></td>
+						<td class="light-blue"><c:out value="${user.city}"/></td>
+						<td class="light-blue"><c:out value="${user.state}"/></td>
+						<td><a  class="red" href="/admin/deleteuser/${user.id}">Delete</a></td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

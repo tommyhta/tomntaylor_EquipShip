@@ -41,6 +41,10 @@ public class User {
 	private String city;
 	private String state;
 	private String tagline;
+	private String description;
+	private float billingRate;
+	private float totalEarnings;
+	private float avgRating;
 	private int user_level;
 	@Column(updatable=false)
 	private Date createdAt;
@@ -81,6 +85,54 @@ public class User {
 	private List<User> mentees; 
 	public User() {
 		super();
+	}
+
+	public float getTotalEarnings() {
+		return totalEarnings;
+	}
+
+	public void setTotalEarnings(float totalEarnings) {
+		this.totalEarnings = totalEarnings;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public float getBillingRate() {
+		return billingRate;
+	}
+
+	public void setBillingRate(float billingRate) {
+		this.billingRate = billingRate;
+	}
+
+	public float getAvgRating() {
+		return avgRating;
+	}
+
+	public void setAvgRating(float avgRating) {
+		this.avgRating = avgRating;
+	}
+
+	public List<User> getMentors() {
+		return mentors;
+	}
+
+	public void setMentors(List<User> mentors) {
+		this.mentors = mentors;
+	}
+
+	public List<User> getMentees() {
+		return mentees;
+	}
+
+	public void setMentees(List<User> mentees) {
+		this.mentees = mentees;
 	}
 
 	public List<Review> getSentReviews() {

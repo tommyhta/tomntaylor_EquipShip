@@ -59,39 +59,12 @@
 			    	<input class="form-control mr-sm-2" type="search" placeholder="Type your desired skillset..." aria-label="Search">
 			  	</form>
 		  	</div>
-			<div class="row">
-    			<div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
+			<div class="block-categories centered">
+				<c:forEach items="${categories}" var="category">
+    			<div class="inline-b category-margins centered">
+			      <a href="/showcategory/${category.id}" class="centered btn btn-dark background-light-blue"><c:out value="${category.name}"/></a>
 			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			</div>
-			<div class="row">
-    			<div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
-			    <div class="col-sm">
-			      <a href="/showcategory" class="btn btn-dark background-light-blue">Category</a>
-			    </div>
+			    </c:forEach>
 			</div>
 			<h2 class="orange pt-4">Real People, Real Mentorship</h2>
 			<div class="row">
