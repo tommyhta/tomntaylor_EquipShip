@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container-fluid p-0">
-		 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">
         <img src="/images/equipship-boat.png" width="50" height="50" class="d-inline-block align-center" alt="boat">
         <span class="dBluFont boldFont">equip</span><span class="bluFont">ship</span>
@@ -36,11 +36,12 @@
       </div>
       <div>
       	<c:choose>
-      		<c:when test="${sessionScope.userID == null }">
-      			<a href="/loginreg"><button>Login</button></a> 
+      		<c:when test="${sessionScope.userId == null}">
+      			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<a href="/logout"><button>Logout</button></a>
+      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
       </div>

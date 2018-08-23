@@ -40,11 +40,12 @@
       </div>
       <div>
       	<c:choose>
-      		<c:when test="${sessionScope.userId == null }">
-      			<a href="/loginreg"><button>Login</button></a> 
+      		<c:when test="${sessionScope.userId == null}">
+      			<a href="/loginreg"><button class="btn btn-secondary">Login</button></a> 
       		</c:when>
       		<c:otherwise>
-      			<a href="/logout"><button>Logout</button></a>
+      			<span>Hello, <a class="orange" href="#"><c:out value="${sessionScope.firstName}"/></a></span>
+      			<a href="/logout"><button class="btn btn-sm btn-dark">Logout</button></a>
       		</c:otherwise>  	
       	</c:choose>
       </div>
@@ -54,132 +55,94 @@
             <h2 class="center bluFont">Mentees</h2>
 
 <!-- ------------------------------------------------------------ -->
-
+	<c:forEach items="${mentees}" var="mentee">
             <div id="mentor"class="row">
                 <div class="col-lg-1"></div>
                 <div class="profile col-lg-2 vAllign">
                     <img class="profileImg" src="/images/profilepic.png" alt="Profile Image">
-                    <p class="name">Full Name</p>
+                    <p class="name"><c:out value="${mentee.firstName}"/> <c:out value="${mentee.lastName}"/></p>
                     <p class="name">City, State</p>
                 </div>
                 <div class="session col-lg-3 vAllign">
                 <h6 class="center requestSession">Session Request</h6>
-                    <div class="reqForm">
-                        <table>
-                            <tr>
-                                <td>Time:</td>
-                                <td>   </td>
-                            </tr>
-                            <tr>
-                                <td>Date:</td>
-                                <td>   </td>
-                            </tr>
-                            <tr>
-                                <td>Location:</td>
-                                <td>   </td>
-                            </tr>
-                        </table>
-                        <div class="center mt-2">
-                            <button class="btn-primary">Accept</button>
-                            <button class="btn-primary">Decline</button>
-                        </div>
+                    <div class="reqForm retiv">
+                    	<c:forEach items="${meetingForMe}" var="meeting">
+                    		<c:choose>
+                    		<c:when test="${meeting.requestor.id == mentee.id}">	
+		                       	<c:if test="${meeting.completed == false}">
+				                        <table>
+				                            <tr>
+				                                <td>Time:</td>
+				                                <td><c:out value="${meeting.time }"/></td>
+				                            </tr>
+				                            <tr>
+				                                <td>Date:</td>
+				                                <td><c:out value="${meeting.gimmeDate() }"/></td>
+				                            </tr>
+				                            <tr>
+				                                <td>Location:</td>
+				                                <td><c:out value="${meeting.location }"/></td>
+				                            </tr>
+				                        </table>
+								</c:if>
+		                    	<c:choose>
+		                    		<c:when test="${meeting.accepted == false}">
+				                        <div class="center mt-2">
+				                        	<form class="formI" action="/accept/${meeting.id}" method="post">
+				                            	<button class="btn-xm btn-primary">Accept</button>
+				                            </form>
+				                            
+				                            <form class="formI" action="/delete/${meeting.id}" method="post">
+				                            	<button class="btn-xm btn-primary">Decline</button>
+				                            </form>
+				                        </div>
+		                        	</c:when>
+		                        	<c:otherwise>
+		                        		<c:choose>
+		                        		<c:when test="${meeting.completed == false}">
+			                        		<div class="center mt-2">
+			                        			<form action="/complete/${meeting.id}" method="post">
+			                        				<button class="btn-xm btn-primary">Mark Complete</button>
+			                        			</form>
+			                        		</div>
+		                        		</c:when>
+		                        		</c:choose>
+		                        	</c:otherwise>
+		                        </c:choose>
+                    		</c:when>
+	      
+                    		</c:choose>
+                    	</c:forEach>
+                    
+                    
+                    
+                    <button id="archive${mentee.id} "class="btn-secondary arch">Archive</button>
                     </div>
                 </div>
                 <div class="message col-lg-5 vAllign">
-                    <div class="chatbox"></div>
+                
+                     <div class="chatbox">
+                
+                    	<c:forEach items="${messages}" var="msg">   	
+		                    	<c:if test="${msg.sender.id == mentee.id }">
+		                    			<p class="bluFont grayBack name"><c:out value="${msg.content}"/></p>
+		                    	</c:if>
+                    	</c:forEach>
+   
+		                    		</div>
                     <div class="form">
-                        <form action="#" action="post">
+                        <form action="/${mentee.id}/messages" method="post">
                             <input class="msgInput stdInput mt-2" type="text" name="message" placeholder="Type your message here">
                             <button class="btnInput btn-primary">Send</button>
                         </form>
                     </div>
                 </div>
             </div>
-    
+ 	</c:forEach>
             <!-- ------------------------------------------------------------ -->
 
 
-            <div id="mentor"class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="profile col-lg-2 vAllign">
-                        <img class="profileImg" src="/images/profilepic.png" alt="Profile Image">
-                        <p class="name">Full Name</p>
-                        <p class="name">City, State</p>
-                    </div>
-                    <div class="session col-lg-3 vAllign">
-                    <h6 class="center requestSession">Session Request</h6>
-                        <div class="reqForm">
-                            <table>
-                                <tr>
-                                    <td>Time:</td>
-                                    <td>   </td>
-                                </tr>
-                                <tr>
-                                    <td>Date:</td>
-                                    <td>   </td>
-                                </tr>
-                                <tr>
-                                    <td>Location:</td>
-                                    <td>   </td>
-                                </tr>
-                            </table>
-                            <div class="center mt-2">
-                                <button class="btn-primary">Accept</button>
-                                <button class="btn-primary">Decline</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message col-lg-5 vAllign">
-                        <div class="chatbox"></div>
-                        <div class="form">
-                            <form action="#" action="post">
-                                <input class="msgInput stdInput mt-2" type="text" name="message" placeholder="Type your message here">
-                                <button class="btnInput btn-primary">Send</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div id="mentor"class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="profile col-lg-2 vAllign">
-                            <img class="profileImg" src="/images/profilepic.png" alt="Profile Image">
-                            <p class="name">Full Name</p>
-                            <p class="name">City, State</p>
-                        </div>
-                        <div class="session col-lg-3 vAllign">
-                        <h6 class="center requestSession">Session Request</h6>
-                            <div class="reqForm">
-                                <table>
-                                    <tr>
-                                        <td>Time:</td>
-                                        <td>   </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>   </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Location:</td>
-                                        <td>   </td>
-                                    </tr>
-                                </table>
-                                <div class="center mt-2">
-                                    <button class="btn-primary">Accept</button>
-                                    <button class="btn-primary">Decline</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message col-lg-5 vAllign">
-                            <div class="chatbox"></div>
-                            <div class="form">
-                                <form action="#" action="post">
-                                    <input class="msgInput stdInput mt-2" type="text" name="message" placeholder="Type your message here">
-                                    <button class="btnInput btn-primary">Send</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+           
 
         </div>
     </div>

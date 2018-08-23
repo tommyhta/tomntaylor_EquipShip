@@ -4,6 +4,13 @@
    background-color:black;
    color:#FFAF23; 
 }
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration:none;
+	color: yellow;
+}
 .navbar *{
     background-color:#343a40;
 }
@@ -47,11 +54,15 @@ div.chatbox{
     overflow: scroll;
     margin-top: 10px;
     color: #00A9E5;
-    background: #343a40;
+    background-color: #343a40;
 }
 .msgInput{
     width: 75%;
     margin:0;
+}
+
+.grayBack{
+	background-color: #343a40;	
 }
 .btnInput{
     margin:0;
@@ -66,6 +77,7 @@ div.chatbox{
 }
 .reqForm{
     padding: 20px;
+    height: 150px;
 }
 
 .bluFont{
@@ -86,6 +98,10 @@ div.chatbox{
     resize: none;
     border-radius: 5px;
 }
+.orange{
+	color: #FFAF23;
+}
+
 .reviewList{
     width: 80%;
     margin: auto;
@@ -96,3 +112,28 @@ div.chatbox{
     color: #00A9E5;
     background: #343a40;
 }
+
+.modal-dialog *{
+	background-color: white;
+}
+.formI{
+	display: inline-block;
+}
+
+.retiv{
+	position: relative;
+}
+.abs{
+	position: absolute;
+}
+.arch{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 11px;
+}
+.btn-xm{
+	font-size: 13px;
+	border-radius: 5px;
+}
+

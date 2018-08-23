@@ -18,7 +18,7 @@
 <body>
 	<div class="container-fluid bottom">
 		<div class="centered">
-		<img src="images/equipship.png" alt="logo"/>
+		<a href="/"><img src="images/equipship.png" alt="logo"/></a>
 		</div>
 		<div class="row">
       <div class="col-lg-1"></div>
