@@ -64,7 +64,7 @@
                 <div class="profile col-lg-2 vAllign">
                     <img class="profileImg" src="/images/profilepic.png" alt="Profile Image">
                     <p class="name"><c:out value="${mentee.firstName}"/> <c:out value="${mentee.lastName}"/></p>
-                    <p class="name">City, State</p>
+                    <p class="name"><c:out value="${mentee.city}"/>, <c:out value="${mentee.state}"/></p>
                 </div>
                 <div class="session col-lg-3 vAllign">
                 <h6 class="center requestSession">Session Request</h6>

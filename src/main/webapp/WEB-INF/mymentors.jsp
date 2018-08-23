@@ -76,7 +76,7 @@
                 <h6 class="center requestSession">Request a session</h6>
                 
                 
-                
+                	
                     <form:form class="reqForm" action="/${mentor.id}/requestSession" method="post" modelAttribute="meeting">
                         <table>
                             <tr>

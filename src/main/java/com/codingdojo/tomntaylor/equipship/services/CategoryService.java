@@ -35,4 +35,8 @@ public class CategoryService {
 	public void deleteCategory(Long id) {
 		categoryRepository.delete(id);
 	}
+	
+	public List<Category> searchByName(String search){
+		return categoryRepository.findByNameContaining(search);
+	}
 }

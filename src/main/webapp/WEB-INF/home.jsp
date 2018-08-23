@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 <meta charset="UTF-8">
 <title>Equipship | Home</title>
@@ -60,17 +61,23 @@
 			<h4 class="tagline orange">Choose from over 10,000 verified Mentors to equip you with knowledge & skills without breaking the bank!</h4>
 			<img id="boat" class="boat" src="/images/equipship-boat.png" alt="boat">
 			<div class="centered padding-sides">
-				<form>
-			    	<input class="form-control mr-sm-2" type="search" placeholder="Type your desired skillset..." aria-label="Search">
+				<form method="post" action="/searchCat" id="catSearch">
+			    	<input class="form-control mr-sm-2" type="search" id="catego" name="search" placeholder="Type your desired skillset..." aria-label="Search">
 			  	</form>
 		  	</div>
-			<div class="block-categories centered">
+			
+		  	
+			<div style="color:white" id="catOutput" class="block-categories centered">
 				<c:forEach items="${categories}" var="category">
     			<div class="inline-b category-margins centered">
 			      <a href="/showcategory/${category.id}" class="centered btn btn-dark background-light-blue"><c:out value="${category.name}"/></a>
 			    </div>
 			    </c:forEach>
 			</div>
+			
+			
+			
+			
 			<h2 class="orange pt-4">Real People, Real Mentorship</h2>
 			<div class="row">
 				<div class="col-md">

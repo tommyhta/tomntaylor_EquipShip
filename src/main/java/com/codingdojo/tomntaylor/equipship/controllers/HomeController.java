@@ -50,6 +50,15 @@ public class HomeController {
 		return "home.jsp";
 	}
 	
+//	---------------------------------------test---------------------------------------
+	
+	
+	
+	
+	
+	
+//	---------------------------------------test---------------------------------------
+
 	@RequestMapping("/showcategory/{id}")
 	public String showCategory(Model model, @PathVariable("id") Long id) {
 		Category thiscategory = categoryService.findById(id);
@@ -140,6 +149,7 @@ public class HomeController {
 		userService.updateUser(user);
 		return "redirect:/mymentors";
 	}
+	
 	
 //	---------------------------------------mentor---------------------------------------
 
@@ -303,8 +313,13 @@ public class HomeController {
 		return "redirect:/mymentees";
 		
 	}
-//	---------------------------------------messages---------------------------------------
-
+	
+	
+	
+	
+	
+//	---------------------------------------Test---------------------------------------
+	
 	
 	
 	
