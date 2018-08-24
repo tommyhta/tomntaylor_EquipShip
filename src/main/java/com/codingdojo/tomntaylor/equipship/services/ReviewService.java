@@ -1,6 +1,7 @@
 package com.codingdojo.tomntaylor.equipship.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,12 @@ public class ReviewService {
 	}
 	
 	public Review findById(Long id) {
-		Review r = reviewRepository.findOne(id);
-		return r;
+		Optional<Review> r = reviewRepository.findById(id);
+		if(r.isPresent()) {
+			return r.get();
+		}else {
+			return null;
+		}
 	}
 	
 	public List<Review> allReviews() {
@@ -33,6 +38,6 @@ public class ReviewService {
 	}
 	
 	public void deleteReview(Long id) {
-		reviewRepository.delete(id);
+		reviewRepository.deleteById(id);
 	}
 }

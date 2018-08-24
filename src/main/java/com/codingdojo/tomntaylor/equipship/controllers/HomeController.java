@@ -1,25 +1,26 @@
 package com.codingdojo.tomntaylor.equipship.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import com.codingdojo.tomntaylor.equipship.models.Category;
-import com.codingdojo.tomntaylor.equipship.services.CategoryService;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.codingdojo.tomntaylor.equipship.models.Category;
 import com.codingdojo.tomntaylor.equipship.models.Meeting;
 import com.codingdojo.tomntaylor.equipship.models.Message;
 import com.codingdojo.tomntaylor.equipship.models.Review;
 import com.codingdojo.tomntaylor.equipship.models.User;
+import com.codingdojo.tomntaylor.equipship.services.CategoryService;
 import com.codingdojo.tomntaylor.equipship.services.MeetingService;
 import com.codingdojo.tomntaylor.equipship.services.MessageService;
 import com.codingdojo.tomntaylor.equipship.services.ReviewService;
@@ -127,7 +128,6 @@ public class HomeController {
 		User user = userService.findUserById(userId);
 		List<Category> userCategories = user.getUserCategories();
 		Long categoryId = Long.parseLong(id);
-		Category categoryToRemove = categoryService.findById(categoryId);
 		for(int i = 0; i < userCategories.size(); i++) {
 			if(userCategories.get(i).getId() == categoryId) {
 				userCategories.remove(i);

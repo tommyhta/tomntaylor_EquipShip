@@ -53,7 +53,7 @@ public class UserService {
 	}
 	
 	public void deleteUser(Long id) {
-		userRepository.delete(id);
+		userRepository.deleteById(id);
 	}
 	
 	public List<User> allUsers() {

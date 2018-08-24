@@ -61,9 +61,9 @@
 			<h4 class="tagline orange">Choose from over 10,000 verified Mentors to equip you with knowledge & skills without breaking the bank!</h4>
 			<img id="boat" class="boat" src="/images/equipship-boat.png" alt="boat">
 			<div class="centered padding-sides">
-				<form method="post" action="/searchCat" id="catSearch">
+				<%-- <form method="post" action="/searchCat" id="catSearch">
 			    	<input class="form-control mr-sm-2" type="search" id="catego" name="search" placeholder="Type your desired skillset..." aria-label="Search">
-			  	</form>
+			  	</form> --%>
 		  	</div>
 			
 		  	

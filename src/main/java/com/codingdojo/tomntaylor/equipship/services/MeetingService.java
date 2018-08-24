@@ -1,6 +1,7 @@
 package com.codingdojo.tomntaylor.equipship.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,13 @@ public class MeetingService {
 
 	
 	public Meeting findById(Long id) {
-		Meeting m = meetingRepository.findOne(id);
-		return m;
+		Optional<Meeting> m = meetingRepository.findById(id);
+		if(m.isPresent()) {
+			return m.get();
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public List<Meeting> allMeetings() {
@@ -40,6 +46,6 @@ public class MeetingService {
 	
 	
 	public void deleteMeeting(Long id) {
-		meetingRepository.delete(id);
+		meetingRepository.deleteById(id);
 	}
 }

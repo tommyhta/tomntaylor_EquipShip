@@ -1,6 +1,7 @@
 package com.codingdojo.tomntaylor.equipship.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,12 @@ public class CategoryService {
 	}
 	
 	public Category findById(Long id) {
-		Category c = categoryRepository.findOne(id);
-		return c;
+		Optional<Category> c = categoryRepository.findById(id);
+		if(c.isPresent()) {
+			return c.get();
+		} else {
+			return null;
+		}
 	}
 	
 	public List<Category> allCategories() {
@@ -33,7 +38,7 @@ public class CategoryService {
 	}
 	
 	public void deleteCategory(Long id) {
-		categoryRepository.delete(id);
+		categoryRepository.deleteById(id);
 	}
 	
 	public List<Category> searchByName(String search){

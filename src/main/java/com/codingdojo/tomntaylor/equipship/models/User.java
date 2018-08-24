@@ -3,6 +3,7 @@ package com.codingdojo.tomntaylor.equipship.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,7 @@ public class User {
 	private Date updatedAt;
 	//relationships
 	//category
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	@JoinTable(
 		name = "user_categories",
 		joinColumns = @JoinColumn(name="user_id"),
@@ -59,19 +60,19 @@ public class User {
 		)
 	private List<Category> userCategories;
 	//message
-	@OneToMany(mappedBy="sender", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="sender", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Message> sentMessages;
-	@OneToMany(mappedBy="recipient", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="recipient", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Message> receivedMessages;
 	//review
-	@OneToMany(mappedBy="reviewer", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="reviewer", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Review> sentReviews;
-	@OneToMany(mappedBy="reviewee", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="reviewee", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Review> receivedReviews;
 	//meeting
-	@OneToMany(mappedBy="requestor", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="requestor", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Meeting> sentMeetings;
-	@OneToMany(mappedBy="requestee", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="requestee", fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	private List<Meeting> receivedMeetings;
 	//mentors
 	@ManyToMany

@@ -1,6 +1,7 @@
 package com.codingdojo.tomntaylor.equipship.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,12 @@ public class MessageService {
 	}
 	 
 	public Message findById(Long id) {
-		Message m = messageRepository.findOne(id);
-		return m;
+		Optional<Message> m = messageRepository.findById(id);
+		if(m.isPresent()) {
+			return m.get();
+		}else {
+			return null;
+		}
 	}
 	
 	public List<Message> allMessages() {
@@ -38,6 +43,6 @@ public class MessageService {
 	}
 	
 	public void deleteMessage(Long id) {
-		messageRepository.delete(id);
+		messageRepository.deleteById(id);
 	}
 }
