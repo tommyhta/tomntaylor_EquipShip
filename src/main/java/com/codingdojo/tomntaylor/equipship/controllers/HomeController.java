@@ -253,6 +253,8 @@ public class HomeController {
 				return "redirect:/loginreg";
 			}else {
 			List<User> users = userService.allUsers();
+			List<Category> categories = categoryService.allCategories();
+			model.addAttribute("categories", categories);
 			model.addAttribute("users", users);
 			return "adminportal.jsp";
 			}
@@ -294,10 +296,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/complete/{id}", method=RequestMethod.POST)
-	public String markComplete(@PathVariable("id")Long id) {
+	public String markComplete(@PathVariable("id")Long id, HttpSession session) {
 		Meeting m = meetingService.findById(id);
 		m.setCompleted(true);
 		meetingService.updateMeeting(m);
+		Long iD = (long) session.getAttribute("userId");
+		User thisUser = userService.findUserById(iD);
+		float formerbillings = thisUser.getTotalEarnings();
+		formerbillings += thisUser.getBillingRate();
+		thisUser.setTotalEarnings(formerbillings);
+		userService.updateUser(thisUser);
 		return "redirect:/mymentees";
 	}
 	@RequestMapping(value="/{id}/messages", method=RequestMethod.POST)
@@ -314,7 +322,19 @@ public class HomeController {
 		
 	}
 	
+	@PostMapping(value="/addCategory")
+	public String addCategory(@RequestParam("category") String category) {
+		Category newCategory = new Category();
+		newCategory.setName(category);
+		categoryService.createCategory(newCategory);
+		return "redirect:/admin";
+	}
 	
+	@PostMapping(value="/delCat/{id}")
+	public String deleteCategories(@PathVariable("id") Long id) {
+		categoryService.deleteCategory(id);
+		return "redirect:/admin";
+	}
 	
 	
 	

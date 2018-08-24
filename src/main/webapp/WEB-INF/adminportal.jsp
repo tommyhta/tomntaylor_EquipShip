@@ -50,6 +50,21 @@
       </div>
     </nav>
 		<div class="main">
+			<form action="/addCategory" method="post">
+				<label for="category">New Category: </label>
+				<input type="text" name="category">
+				<button>Add</button>
+			</form> 
+			<ul>
+				<c:forEach items="${categories}" var="cat">
+					<li><c:out value="${cat.name}"/>
+						<form class="formI" action="/delCat/${cat.id}" method="post">
+							<button class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button> 
+						</form>
+				</c:forEach>
+			</ul>	
 			<table class="table table-hover table-dark">
 				<thead>
 					<tr>
